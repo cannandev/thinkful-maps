@@ -1,0 +1,56 @@
+@import 'normalize';
+
+/* End of reset */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* End of Border-box */
+
+$dark: #000;
+$light: #fff;
+
+/* End of colors */
+
+img {
+	width: 100%;
+	height: auto;
+}
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+#map-canvas {
+	width: 100%;
+	background: aliceblue;
+}
+
+header {
+	text-align: center;
+}
+
+.chooser {
+	position: relative;
+	overflow: auto;
+}
+
+.detail {
+	background-color: $dark;
+}
+
+/* End layout */
+
+.image-slider {
+	.image-wrapper {
+		border: 1px solid $dark;
+		background-color: $light;
+		padding: 2em;
+		margin: 0;
+	}
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Thinkful Maps</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Final project for Thinkful FEWD course. Uses Googlemaps API and Instagram API.">
+	<link rel="stylesheet" href="css/main.css">
+	<!--[if IE]>
+   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
+</head>
+<body>
+	<canvas id="map-canvas"></canvas>
+	<header class="chooser">
+		<div class="container">
+			<h1>Thinkful Maps</h1>
+			<h2>Locating photos from <span>@googlemaps</span></h2>
+			<select name="locations" id="location-select">
+				<option value="0" selected>Paris, France</option>
+				<option value="1">Melbourne, Australia</option>
+				<option value="2">Linz, Austria</option>
+				<option value="3">Barcelona, Spain</option>
+			</select>			
+		</div>
+	</header>
+	<div class="detail">
+		<div class="container">
+			<div class="image-slider">
+				<div class="arrows">
+					<i class="fa fa-arrow-left"></i>
+					<i class="fa fa-arrow-left"></i>
+				</div>
+				<figure class="image-wrapper">
+					<img src="https://images.unsplash.com/photo-1443479579455-1860f114bf77?fit=crop&fm=jpg&h=475&q=80&w=700" alt="photo text">
+					<figcaption>
+						<ul>
+							<li># likes</li>
+							<li># comments</li>
+							<li>#days ago</li>
+						</ul>
+					</figcaption>
+				</figure>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
