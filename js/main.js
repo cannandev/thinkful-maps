@@ -1,6 +1,44 @@
 var geocoder;
 var map;
 
+function addMarker(location){
+  var marker = new google.maps.Marker({
+      'map': map,
+      'position': location,
+      'title': 'Click for images',
+  });
+  
+  marker.addListener('click', function() {
+    map.setZoom(10);
+    map.setCenter(marker.getPosition());
+    map.showImages();
+  });
+}
+
+function codeAddress(){
+	var address = $('#location-select').find('option:selected').text();
+	var latLong = {
+		'address': address,
+	};	
+
+	geocoder.geocode(latLong, function(results, status){
+   if (status === google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+			addMarker(results[0].geometry.location);     
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }		
+	});		
+}
+
+/* Below function will cause a OVER_QUERY_LIMIT error. */
+// function setMarkers(){
+// 	var addrs = $('#location-select option').text();
+// 	for(var i=0; i<addrs.length; i++){
+// 		codeAddress(addrs[i]);
+// 	}
+// }
+
 function initMap() {
 	var start = {lat: -34.397, lng: 150.644};
 	geocoder = new google.maps.Geocoder();
@@ -15,46 +53,10 @@ function initMap() {
     },
   });
 
-  // Create a marker and set its position.
+  // setMarkers();
   codeAddress();
 
-  // var marker = new google.maps.Marker;
-
-  // marker.addListener('click', function() {
-  //   map.setZoom(10);
-  //   map.setCenter(marker.getPosition());
-  // });
 }
-
-function codeAddress(){
-	
-	var address = $('#location-select').find('option:selected').text();
-	var latLong = {
-		'address': address,
-	};	
-
-	geocoder.geocode(latLong, function(results, status){
-   if (status === google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          'map': map,
-          'position': results[0].geometry.location,
-          'title': 'Click for images',
-      });
-      // Replace with its own function
-		  marker.addListener('click', function() {
-		    map.setZoom(10);
-		    map.setCenter(marker.getPosition());
-		    map.showImages();
-		  });      
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }		
-	});
-}
-
-// geocode() converts city to long/lat
-// addMarkers() builds array of markers. Pass this array to initMap(). For each marker, add listener
 
 $(document).ready(function(){
 	initMap();
