@@ -1,0 +1,1 @@
+function initMap(){var e={lat:-34.397,lng:150.644},t=new google.maps.Map(document.getElementById("map-canvas"),{center:e,scrollwheel:!1,zoom:12}),n=new google.maps.Marker({map:t,position:e,title:"Click to show image"});n.addListener("click",function(){t.setZoom(10),t.setCenter(n.getPosition())})}$(document).ready(function(){initMap()});
