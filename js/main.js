@@ -1,5 +1,17 @@
 var geocoder;
 var map;
+var images;
+
+function getImages(){
+	var url = 'https://api.instagram.com/v1/users/self/media/recent?';
+	var params = {
+		client_id: '5f79be679d5a459ab4c98dfe864968d9',
+	};
+	$.getJSON(url, params, function(data, textStatus) {
+			console.log('textStatus: ' + textStatus);
+			console.log('data:' + data);
+	});
+}
 
 function addMarker(location){
   var marker = new google.maps.Marker({
@@ -60,6 +72,7 @@ function initMap() {
 
 $(document).ready(function(){
 	initMap();
+	getImages();
 	$('#location-select').change(function(){
 		codeAddress();
 	});	
