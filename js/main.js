@@ -23,7 +23,10 @@
       $('.image-wrapper img').attr({'src': this.images[index].url, 'alt': this.name[index]});
       $('.image-wrapper .likes').text(this.likes[index] + ' likes');
       $('.image-wrapper .comments').text(this.comments[index] + ' comments');
-      $('.image-wrapper .period').text(this.period[index] + ' days ago');
+
+      var lapse = Date.now() - this.period[index];
+      var period = new Date(lapse);
+      $('.image-wrapper .period').text(Math.ceil(period.getHours()/24) + ' days ago');
     },
   };
 
