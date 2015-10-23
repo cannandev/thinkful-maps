@@ -12,13 +12,18 @@
       this.name.push(data.location.name);
       this.latLong.push({lat: data.location.latitude, lng: data.location.longitude});
       this.images.push(data.images.standard_resolution);
+      this.link.push(data.link);
+      this.likes.push(data.likes.count);
+      this.comments.push(data.comments.count);
+      this.period.push(data.created_time);      
     },
     showImages: function(index){
       $('#map-canvas').animate({'height': 300});
       $('.details').fadeIn('slow');
-      $('.image-wrapper img')
-      .attr({'src': this.images[index].url, 'alt': this.name[index]});
-     
+      $('.image-wrapper img').attr({'src': this.images[index].url, 'alt': this.name[index]});
+      $('.image-wrapper .likes').text(this.likes[index] + ' likes');
+      $('.image-wrapper .comments').text(this.comments[index] + ' comments');
+      $('.image-wrapper .period').text(this.period[index] + ' days ago');
     },
   };
 
@@ -41,11 +46,15 @@
           longitude: 8.561388889,
           id: 251375084
         },
-        comments: {},
+        comments: {
+          count: 10,
+        },
         filter: "Normal",
         created_time: "1445359136",
         link: "https://instagram.com/p/9EQAr6mXZ1/",
-        likes: {},
+        likes: {
+          count: 2758,
+        },
         images: {
           low_resolution: {
             url: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s320x320/e35/12107517_906875396073167_730637494_n.jpg",
@@ -86,11 +95,15 @@
           longitude: 14.3,
           id: 213122165
         },
-        comments: {},
+        comments: {
+          count: 53,
+        },
         filter: "Normal",
         created_time: "1445012921",
         link: "https://instagram.com/p/857qKtmXZ_/",
-        likes: {},
+        likes: {
+          count: 4559,
+        },
         images: {
           low_resolution: {
           url: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s320x320/e35/12107559_123297081359554_960441800_n.jpg",
@@ -131,11 +144,15 @@
           longitude: 2.18333,
           id: 213100244
         },
-        comments: {},
+        comments: {
+          count: 19,
+        },
         filter: "Normal",
         created_time: "1444933476",
         link: "https://instagram.com/p/83kIS5GXSG/",
-        likes: {},
+        likes: {
+          count: 3007,
+        },
         images: {
           low_resolution: {
           url: "https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/s320x320/e35/10723754_1515738058747178_1141339091_n.jpg",
