@@ -4,17 +4,25 @@
     name: [],
     latLong: [],
     images: [],
-    showImages: function(i){
+    link: [],
+    likes: [],
+    comments: [],
+    period: [],
+    setVariables: function(data){
+      this.name.push(data.location.name);
+      this.latLong.push({lat: data.location.latitude, lng: data.location.longitude});
+      this.images.push(data.images.standard_resolution);
+    },
+    showImages: function(index){
       $('#map-canvas').animate({'height': 300});
       $('.details').fadeIn('slow');
       $('.image-wrapper img')
-      .attr({'src': this.images[i].url, 'alt': this.name[i]});
+      .attr({'src': this.images[index].url, 'alt': this.name[index]});
      
     },
   };
-  //dummy data
-  // var images = $.getScript ("js/imgObj.json");
 
+  // var images = $.getScript ("js/imgObj.json");
   var images = {
     pagination: {
       next_url: "https://api.instagram.com/v1/users/336431628/media/recent?max_id=1076860697341162914_336431628&client_id=5f79be679d5a459ab4c98dfe864968d9",
@@ -175,9 +183,7 @@
 
     for(var i=0; i<images.data.length; i++){
       list.append('<option value="' + i + '">' + images.data[i].location.name + '</option>');
-      locations.name.push(images.data[i].location.name);
-      locations.latLong.push({lat: images.data[i].location.latitude, lng: images.data[i].location.longitude});
-      locations.images.push(images.data[i].images.standard_resolution);
+      locations.setVariables(images.data[i]);
     }
 
     list[0].selectedIndex = 0;
