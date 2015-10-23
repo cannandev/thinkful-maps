@@ -7,7 +7,7 @@
     link: [],
     likes: [],
     comments: [],
-    period: [],
+    date: [],
     setVariables: function(data){
       this.name.push(data.location.name);
       this.latLong.push({lat: data.location.latitude, lng: data.location.longitude});
@@ -15,7 +15,7 @@
       this.link.push(data.link);
       this.likes.push(data.likes.count);
       this.comments.push(data.comments.count);
-      this.period.push(data.created_time);      
+      this.date.push(data.created_time);      
     },
     showImages: function(index){
       $('#map-canvas').animate({'height': 300});
@@ -24,9 +24,10 @@
       $('.image-wrapper .likes').text(this.likes[index] + ' likes');
       $('.image-wrapper .comments').text(this.comments[index] + ' comments');
 
-      var lapse = Date.now() - this.period[index];
-      var period = new Date(lapse);
-      $('.image-wrapper .period').text(Math.ceil(period.getHours()/24) + ' days ago');
+      // var lapse = Date.now() - this.date[index];
+      var date = new Date(parseInt(this.date[index]) * 1000);
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      $('.image-wrapper .date').text('Posted on ' + months[date.getMonth()] + ' ' + date.getDate());
     },
   };
 
@@ -188,14 +189,14 @@
   };
 
   // function getImages(){
-  	// var url = 'https://api.instagram.com/v1/users/self/media/recent?';
-  	// var params = {
-  	// 	access_token: 'ACCESS_TOKEN',
-  	// };
-  	// $.getJSON(url, params, function(data, textStatus) {
-  	// 		console.log('textStatus: ' + textStatus);
-  	// 		console.log('data:' + data);
-  	// });
+  // 	var url = 'https://api.instagram.com/v1/users/336431628/media/recent/';
+  // 	var params = {
+  // 		access_token: '829290775.5f79be6.e09d3652a36f42cea5f8426426d844f8',
+  // 	};
+  // 	$.getJSON(url, params, function(data, textStatus) {
+  // 			console.log('textStatus: ' + textStatus);
+  // 			console.log('data:' + data);
+  // 	});
   // }
 
   function buildList(){
@@ -245,6 +246,7 @@
       zoom: 6,
     });
 
+    // getImages();
     buildList();
     codeAddress();
   }
