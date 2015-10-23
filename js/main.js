@@ -226,7 +226,8 @@
   $(document).ready(function(){
   	initMap();
   	$('#location-select').change(function(){
-  		codeAddress();
+  		$('#map-canvas').animate({'height': 500});
+      codeAddress();
   	});	
   });
 })();
