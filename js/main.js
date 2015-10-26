@@ -31,7 +31,7 @@
         comments: data[i].comments.count,
         date: data[i].created_time,
       };
-      // list.addEventListener('change', centerLocation, false);
+      list.addEventListener('change', centerLocation, false);
       addMarker(i, latLong);
       addThumb(i, thumb);
       addDetails(imageInfo);
