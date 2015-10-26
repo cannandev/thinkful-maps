@@ -10,6 +10,19 @@
     success: function(data) {
       console.log('ig loading...');
       buildList(data.data);
+      for(var i=0; i<data.data.length; i++){
+        var latLong = {lat: data.data[i].location.latitude, lng: data.data[i].location.longitude};
+        var imageInfo = {
+          url: data.data[i].images.standard_resolution.url, 
+          name: data.data[i].location.name, 
+          likes: data.data[i].likes.count,
+          comments: data.data[i].comments.count,
+          date: data.data[i].created_time,
+        };        
+        addThumb(data.data[i].images.thumbnail);
+        addMarker(i, latLong);
+        addDetails(imageInfo);      
+      }
     }
     //@todo fail: error message
   });   
@@ -18,23 +31,12 @@
     var list = document.getElementById('location-select');
 
     for(var i = 0; i < data.length; i++){
-      var option = document.createElement('option');      
+      var option = document.createElement('option');
+
       option.text = data[i].location.name;
       option.value = i;
       list.appendChild(option);
-      var latLong = {lat: data[i].location.latitude, lng: data[i].location.longitude};
-      var thumb = data[i].images.thumbnail;
-      var imageInfo = {
-        url: data[i].images.standard_resolution.url, 
-        name: data[i].location.name, 
-        likes: data[i].likes.count,
-        comments: data[i].comments.count,
-        date: data[i].created_time,
-      };
       list.addEventListener('change', centerLocation, false);
-      addMarker(i, latLong);
-      addThumb(i, thumb);
-      addDetails(imageInfo);
     }
     list[0].selectedIndex = 0;
   }
@@ -49,7 +51,7 @@
     $('.image-wrapper .date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
   }
 
-  function addThumb(index, image){
+  function addThumb(image){
     //console.log('thumb: '+ image);
   }
 
@@ -73,7 +75,7 @@
     event.preventDefault();
   	// var current = $('#location-select').find('option:selected').text();
     map.setZoom(10);
-    map.setCenter(location);   
+    map.setCenter(location);
   }
 
   function initMap() {
@@ -91,7 +93,7 @@
   	initMap();
   	$('#location-select').change(function(){
   		$('#map-canvas').animate({'height': 500});
-  	});	
+  	});
   });
 })();
 
