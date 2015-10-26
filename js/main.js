@@ -8,21 +8,20 @@
     cache: false,
     url: "https://api.instagram.com/v1/users/336431628/media/recent/?access_token=829290775.5f79be6.e09d3652a36f42cea5f8426426d844f8",
     success: function(data) {
+      console.log('ig loading...');
       buildList(data.data);
-      console.log('building list...');
     }
     //@todo fail: error message
   });   
 
-  function showDetail(){
-    $('#map-canvas').animate({'height': 300});
-    $('.details').fadeIn('slow');
-  }
-
   function buildList(data){
-    var list = $('#location-select');
+    var list = document.getElementById('location-select');
+
     for(var i = 0; i < data.length; i++){
-      list.append('<option value="' + i + '">' + data[i].location.name + '</option>');
+      var option = document.createElement('option');      
+      option.text = data[i].location.name;
+      option.value = i;
+      list.appendChild(option);
       var latLong = {lat: data[i].location.latitude, lng: data[i].location.longitude};
       var thumb = data[i].images.thumbnail;
       var imageInfo = {
@@ -65,20 +64,15 @@
     marker.addListener('click', function() {
       map.setZoom(10);
       map.setCenter(marker.getPosition());
-      showDetail();
+      $('#map-canvas').animate({'height': 300});
+      $('.details').fadeIn('slow');      
     });
   }
 
   function codeAddress(){
-    var locations = $('#location-select').length;
   	var current = $('#location-select').find('option:selected').text();
 
-    for (var i=0; i<locations; i++){
-      if(locations.name[i] === current){
-        map.setCenter(locations.latLong[i]);
-        showDetail();
-      }
-    }
+    map.setCenter(current);    
   }
 
   function initMap() {
