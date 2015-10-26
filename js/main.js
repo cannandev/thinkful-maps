@@ -31,10 +31,10 @@
         comments: data[i].comments.count,
         date: data[i].created_time,
       };
-      list.addEventListener('change', centerLocation, false);
+      // list.addEventListener('change', centerLocation, false);
       addMarker(i, latLong);
       addThumb(i, thumb);
-      addDetails(i, imageInfo);
+      addDetails(imageInfo);
     }
     list[0].selectedIndex = 0;
   }
@@ -65,15 +65,15 @@
       map.setZoom(10);
       map.setCenter(marker.getPosition());
       $('#map-canvas').animate({'height': 300});
-      $('.details').fadeIn('slow');      
+      $('.details').fadeIn('slow');   
     });
   }
 
-  function centerLocation(event){
+  function centerLocation(event, location){
     event.preventDefault();
   	// var current = $('#location-select').find('option:selected').text();
     map.setZoom(10);
-    map.setCenter(this.latLong);   
+    map.setCenter(location);   
   }
 
   function initMap() {
