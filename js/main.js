@@ -31,6 +31,7 @@
         comments: data[i].comments.count,
         date: data[i].created_time,
       };
+      list.addEventListener('change', centerLocation, false);
       addMarker(i, latLong);
       addThumb(i, thumb);
       addDetails(i, imageInfo);
@@ -38,12 +39,11 @@
     list[0].selectedIndex = 0;
   }
 
-  function addDetails(index, info){
+  function addDetails(info){
     $('.image-wrapper img').attr({'src': info.url, 'alt': info.name});
     $('.image-wrapper .likes').text(info.likes + ' likes');
     $('.image-wrapper .comments').text(info.comments + ' comments');
 
-    // var lapse = Date.now() - this.date[index];
     var date = new Date(parseInt(info.date) * 1000);
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     $('.image-wrapper .date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
@@ -69,19 +69,20 @@
     });
   }
 
-  function codeAddress(){
-  	var current = $('#location-select').find('option:selected').text();
-
-    map.setCenter(current);    
+  function centerLocation(event){
+    event.preventDefault();
+  	// var current = $('#location-select').find('option:selected').text();
+    map.setZoom(10);
+    map.setCenter(this.latLong);   
   }
 
   function initMap() {
-  	var start = {lat: -34.397, lng: 150.644};
+  	var start = {lat: 34.397, lng: 150.644};
 
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: start,
       scrollwheel: false,
-      zoom: 2,
+      zoom: 3,
     });
     console.log('map initialized...');
   }
@@ -90,7 +91,6 @@
   	initMap();
   	$('#location-select').change(function(){
   		$('#map-canvas').animate({'height': 500});
-      codeAddress();
   	});	
   });
 })();
