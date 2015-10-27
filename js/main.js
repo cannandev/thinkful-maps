@@ -9,18 +9,23 @@
     url: "https://api.instagram.com/v1/users/336431628/media/recent/?access_token=829290775.5f79be6.e09d3652a36f42cea5f8426426d844f8",
     success: function(data) {
       console.log('ig loading...');
-      buildList(data.data);
-      for(var i=0; i<data.data.length; i++){
-        var latLong = {lat: data.data[i].location.latitude, lng: data.data[i].location.longitude};
+      var d = data.data;
+      buildList(d);
+      for(var i=0; i<d.length; i++){
+        var latLong = {
+          lat: d[i].location.latitude, 
+          lng: d[i].location.longitude
+        };
         var imageInfo = {
-          url: data.data[i].images.standard_resolution.url, 
-          name: data.data[i].location.name, 
-          likes: data.data[i].likes.count,
-          comments: data.data[i].comments.count,
-          date: data.data[i].created_time,
-        };        
-        addThumb(data.data[i].images.thumbnail);
-        addMarker(i, latLong);
+          url: d[i].images.standard_resolution.url, 
+          name: d[i].location.name, 
+          likes: d[i].likes.count,
+          comments: d[i].comments.count,
+          date: d[i].created_time,
+        };
+        
+        addThumb(d[i].images.thumbnail);
+        addMarker(latLong);
         addDetails(imageInfo);      
       }
     }
@@ -32,14 +37,25 @@
 
     for(var i = 0; i < data.length; i++){
       var option = document.createElement('option');
-
       option.text = data[i].location.name;
       option.value = i;
       list.appendChild(option);
-      list.addEventListener('change', centerLocation, false);
+
+      var latLong = {name: data[i].location.name, lat: data[i].location.latitude, lng: data[i].location.longitude};
+      $(list).on('change', latLong, centerLocation);
+      /* See http://api.jquery.com/on/#passing-data */
     }
     list[0].selectedIndex = 0;
   }
+
+  function centerLocation(event){
+    var current = $('#location-select').find('option:selected').text();
+    if(event.data.name === current){
+      map.setZoom(10);
+      map.setCenter(event.data);
+      console.log(event.data);      
+    }
+  }  
 
   function addDetails(info){
     $('.image-wrapper img').attr({'src': info.url, 'alt': info.name});
@@ -55,12 +71,11 @@
     //console.log('thumb: '+ image);
   }
 
-  function addMarker(index, location){
+  function addMarker(location){
     var marker = new google.maps.Marker({
       map: map,
       position: location,
-      title: 'Click for images',
-      index: index,
+      title: 'Click for image',
     });
 
     marker.addListener('click', function() {
@@ -71,15 +86,8 @@
     });
   }
 
-  function centerLocation(event, location){
-    event.preventDefault();
-  	// var current = $('#location-select').find('option:selected').text();
-    map.setZoom(10);
-    map.setCenter(location);
-  }
-
   function initMap() {
-  	var start = {lat: 34.397, lng: 150.644};
+  	var start = {lat: 31.9639977, lng: 35.90654797};
 
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: start,
@@ -92,7 +100,7 @@
   $(document).ready(function(){
   	initMap();
   	$('#location-select').change(function(){
-  		$('#map-canvas').animate({'height': 500});
+  		$('#map-canvas').animate({'height': 800});
   	});
   });
 })();
