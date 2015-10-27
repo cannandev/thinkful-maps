@@ -58,13 +58,16 @@
   }  
 
   function addDetails(info){
-    $('.image-wrapper img').attr({'src': info.url, 'alt': info.name});
-    $('.image-wrapper .likes').text(info.likes + ' likes');
-    $('.image-wrapper .comments').text(info.comments + ' comments');
+    var detail = $('.image-wrapper.template').clone().removeClass('template');
+    $('.image-slider').append(detail);
 
-    var date = new Date(parseInt(info.date) * 1000);
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    $('.image-wrapper .date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
+    // $('.image-wrapper img').attr({'src': info.url, 'alt': info.name});
+    // $('.image-wrapper .likes').text(info.likes + ' likes');
+    // $('.image-wrapper .comments').text(info.comments + ' comments');
+
+    // var date = new Date(parseInt(info.date) * 1000);
+    // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    // $('.image-wrapper .date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
   }
 
   function addThumb(image){
