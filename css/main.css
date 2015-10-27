@@ -425,3 +425,6 @@ img {
   background-color: #fff;
   padding: 2em;
   margin: 0; }
+
+.image-wrapper.template {
+  display: none; }

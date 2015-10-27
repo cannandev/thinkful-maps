@@ -34,7 +34,7 @@
 
   function buildList(data){
     var list = document.getElementById('location-select');
-
+    list.innerHTML = '';
     for(var i = 0; i < data.length; i++){
       var option = document.createElement('option');
       option.text = data[i].location.name;
@@ -58,16 +58,15 @@
   }  
 
   function addDetails(info){
+    var date = new Date(parseInt(info.date) * 1000);
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var detail = $('.image-wrapper.template').clone().removeClass('template');
+    detail.find('img').attr({'src': info.url, 'alt': info.name});
+    detail.find('.likes').text(info.likes + ' likes');
+    detail.find('.comments').text(info.comments + ' comments');
+    detail.find('.date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
+
     $('.image-slider').append(detail);
-
-    // $('.image-wrapper img').attr({'src': info.url, 'alt': info.name});
-    // $('.image-wrapper .likes').text(info.likes + ' likes');
-    // $('.image-wrapper .comments').text(info.comments + ' comments');
-
-    // var date = new Date(parseInt(info.date) * 1000);
-    // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    // $('.image-wrapper .date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
   }
 
   function addThumb(image){
