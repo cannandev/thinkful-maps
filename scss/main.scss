@@ -83,15 +83,20 @@ img {
 /* End layout */
 
 .image-slider {
+	position: relative;
 	.image-wrapper {
 		border: 1px solid $dark;
 		background-color: $light;
 		padding: 2em;
 		margin: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
 	}
 }
 
-.image-wrapper.template {
-	display: none;
+.image-wrapper.active {
+	display: block;
 }
 
