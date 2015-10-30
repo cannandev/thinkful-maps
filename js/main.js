@@ -10,7 +10,6 @@
     url: "https://api.instagram.com/v1/users/336431628/media/recent/?access_token=829290775.5f79be6.e09d3652a36f42cea5f8426426d844f8",
     success: function(data) {
       var d = data.data;
-      buildList(d);
       for(var i=0; i<d.length; i++){
         var latLong = {
           lat: d[i].location.latitude, 
@@ -24,7 +23,7 @@
           comments: d[i].comments.count,
           date: d[i].created_time,
         };
-
+        buildList(i, latLong);
         thumbs.push(d[i].images.thumbnail.url);        
         addMarker(i, latLong);
         addDetails(imageInfo);      
@@ -33,24 +32,18 @@
     //@todo fail: error message
   });   
 
-  function buildList(data){
+  function buildList(index, location){
     var list = document.getElementById('location-select');
-    list.innerHTML = '';
-    for(var i = 0; i < data.length; i++){
-      var option = document.createElement('option');
-      var latLong = {
-        name: data[i].location.name, 
-        lat: data[i].location.latitude, 
-        lng: data[i].location.longitude
-      };
+    var option = document.createElement('option');
 
-      option.text = data[i].location.name;
-      option.value = i;
-      list.appendChild(option);
-      $(list).on('change', latLong, centerLocation);
-      /* See http://api.jquery.com/on/#passing-data */
-    }
-    list[0].selectedIndex = 0;
+    option.text = location.name;
+    option.value = index;
+    list.appendChild(option);
+    list.selectedIndex = 0;
+
+    $(list).on('change', location, centerLocation);
+    /* See http://api.jquery.com/on/#passing-data */
+    
   }
 
   function centerLocation(event){
@@ -91,6 +84,7 @@
 
     marker.addListener('click', function() {
       map.setCenter(marker.getPosition());
+      infowindow.close();      
       $(details[marker.index]).addClass('active');
       $('#map-canvas').animate({'height': 300});
       $('.details').fadeIn('slow');
