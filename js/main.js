@@ -50,7 +50,6 @@
     var current = $('#location-select').find('option:selected').text();
     if(event.data.name === current){
       map.setCenter(event.data);
-      console.log(event.data);      
     }
   }  
 
@@ -104,6 +103,7 @@
       center: start,
       scrollwheel: false,
       zoom: 3,
+      mapTypeControl: false,
     });
   }
 
