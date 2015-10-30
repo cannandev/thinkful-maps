@@ -1,6 +1,7 @@
 (function () {
 
   var map;
+  var thumbs = [];
 
   $.ajax({
     type: "GET",
@@ -13,7 +14,8 @@
       for(var i=0; i<d.length; i++){
         var latLong = {
           lat: d[i].location.latitude, 
-          lng: d[i].location.longitude
+          lng: d[i].location.longitude,
+          name: d[i].location.name,           
         };
         var imageInfo = {
           url: d[i].images.standard_resolution.url, 
@@ -22,8 +24,8 @@
           comments: d[i].comments.count,
           date: d[i].created_time,
         };
-        
-        addThumb(d[i].images.thumbnail);
+
+        thumbs.push(d[i].images.thumbnail.url);        
         addMarker(i, latLong);
         addDetails(imageInfo);      
       }
@@ -54,7 +56,6 @@
   function centerLocation(event){
     var current = $('#location-select').find('option:selected').text();
     if(event.data.name === current){
-      map.setZoom(10);
       map.setCenter(event.data);
       console.log(event.data);      
     }
@@ -72,27 +73,34 @@
     $('.image-slider').append(detail);
   }
 
-  function addThumb(image){
-    //console.log('thumb: '+ image);
-  }
-
   function addMarker(index, location){
     var marker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
       map: map,
       position: location,
-      title: 'Click for image',
+      title: location.name,
       index: index,
     });
 
     var details = $('.details .image-wrapper');
+    var infowindow = new google.maps.InfoWindow({
+      content: '<h4>' + marker.title + '</h4>' +
+        '<img src="' + thumbs[marker.index] + '"/>',
+      }
+    );
 
     marker.addListener('click', function() {
-      map.setZoom(10);
       map.setCenter(marker.getPosition());
       $(details[marker.index]).addClass('active');
       $('#map-canvas').animate({'height': 300});
       $('.details').fadeIn('slow');
-
+    });
+    marker.addListener('mouseover', function(){
+      infowindow.setZIndex(1000);
+      infowindow.open(map, marker);
+    });
+    marker.addListener('mouseout', function(){
+      infowindow.close();
     });
   }
 
