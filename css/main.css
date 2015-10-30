@@ -373,6 +373,11 @@ img {
   width: 100%;
   height: auto; }
 
+h1, h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff; }
+
 .container {
   max-width: 600px;
   margin: 0 auto; }
@@ -392,10 +397,6 @@ img {
   top: 0;
   width: 100%;
   z-index: 10; }
-  .locations h1, .locations h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    color: #fff; }
   .locations h1 {
     margin-top: 0;
     margin-bottom: 0;
@@ -416,8 +417,10 @@ img {
 
 .details {
   background-color: #000;
-  display: none;
   position: relative; }
+  .details .intro {
+    color: #fff;
+    text-align: center; }
 
 /* End layout */
 .image-slider {
@@ -431,6 +434,16 @@ img {
     top: 0;
     left: 0;
     display: none; }
+  .image-slider .arrows {
+    color: red;
+    position: absolute;
+    z-index: 1;
+    width: 100%; }
+    .image-slider .arrows .fa {
+      float: left;
+      font-size: 10em; }
+    .image-slider .arrows .fa-angle-right {
+      float: right; }
 
 .image-wrapper.active {
   display: block; }

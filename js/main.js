@@ -86,7 +86,7 @@
       infowindow.close();      
       $(details[marker.index]).addClass('active');
       $('#map-canvas').animate({'height': 300});
-      $('.details').fadeIn('slow');
+      $('.image-slider').fadeIn('slow');
     });
     marker.addListener('mouseover', function(){
       infowindow.setZIndex(1000);
@@ -105,6 +105,7 @@
       zoom: 3,
       mapTypeControl: false,
     });
+    // map.addListener('bounds_changed', 'resize');
   }
 
   $(document).ready(function(){

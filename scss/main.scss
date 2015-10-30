@@ -25,6 +25,13 @@ img {
 	width: 100%;
 	height: auto;
 }
+
+h1, h2 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: $light;
+}
+
 .container {
 	max-width: 600px;
 	margin: 0 auto;
@@ -46,12 +53,6 @@ img {
 	top: 0;
 	width: 100%;
 	z-index: 10;
-	h1, h2 {
-		font-family: 'Roboto', sans-serif;
-		font-weight: 300;
-		color: $light;
-	}
-
 	h1 {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -76,8 +77,11 @@ img {
 
 .details {
 	background-color: $dark;
-	display: none;
 	position: relative;
+	.intro {
+		color: $light;
+		text-align: center;
+	}
 }
 
 /* End layout */
@@ -93,6 +97,19 @@ img {
 		top: 0;
 		left: 0;
 		display: none;
+	}
+	.arrows {
+		color: red;
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		.fa {
+			float: left;
+			font-size: 10em;
+		}
+		.fa-angle-right {
+			float: right;
+		}
 	}
 }
 
