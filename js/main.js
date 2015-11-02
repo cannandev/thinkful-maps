@@ -23,6 +23,7 @@
           comments: d[i].comments.count,
           date: d[i].created_time,
         };
+
         buildList(i, latLong);
         thumbs.push(d[i].images.thumbnail.url);        
         addMarker(i, latLong);
@@ -114,6 +115,12 @@
   	$('#location-select').change(function(){
   		$('#map-canvas').animate({'height': 800});
   	});
+    $('.image-slider-arrows.right').click(function(){
+      $('.image-wrapper.active').removeClass('active').next().addClass('active');
+    });
+    $('.image-slider-arrows.left').click(function(){
+      $('.image-wrapper.active').removeClass('active').prev().addClass('active');
+    });    
   });
 })();
 

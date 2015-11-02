@@ -415,12 +415,14 @@ h1, h2 {
     border: 0;
     outline: 0; }
 
+.intro {
+  background-color: #000;
+  color: #fff;
+  text-align: center; }
+
 .details {
   background-color: #000;
   position: relative; }
-  .details .intro {
-    color: #fff;
-    text-align: center; }
 
 /* End layout */
 .image-slider {
@@ -440,7 +442,7 @@ h1, h2 {
   font-size: 10em;
   position: absolute;
   top: 50%;
-  z-index: 1; }
+  z-index: 10; }
   .image-slider-arrows.left {
     left: .5em; }
   .image-slider-arrows.right {
