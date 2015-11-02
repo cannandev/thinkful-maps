@@ -434,16 +434,17 @@ h1, h2 {
     top: 0;
     left: 0;
     display: none; }
-  .image-slider .arrows {
-    color: red;
-    position: absolute;
-    z-index: 1;
-    width: 100%; }
-    .image-slider .arrows .fa {
-      float: left;
-      font-size: 10em; }
-    .image-slider .arrows .fa-angle-right {
-      float: right; }
+
+.image-slider-arrows {
+  color: #fff;
+  font-size: 10em;
+  position: absolute;
+  top: 50%;
+  z-index: 1; }
+  .image-slider-arrows.left {
+    left: .5em; }
+  .image-slider-arrows.right {
+    right: .5em; }
 
 .image-wrapper.active {
   display: block; }

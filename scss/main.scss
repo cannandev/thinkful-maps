@@ -98,18 +98,19 @@ h1, h2 {
 		left: 0;
 		display: none;
 	}
-	.arrows {
-		color: red;
-		position: absolute;
-		z-index: 1;
-		width: 100%;
-		.fa {
-			float: left;
-			font-size: 10em;
-		}
-		.fa-angle-right {
-			float: right;
-		}
+}
+
+.image-slider-arrows {
+	color: $light;
+	font-size: 10em;
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	&.left {
+		left: .5em;
+	}
+	&.right {
+		right: .5em;
 	}
 }
 

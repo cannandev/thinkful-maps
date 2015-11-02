@@ -28,6 +28,7 @@
         addMarker(i, latLong);
         addDetails(imageInfo);      
       }
+      $('.image-wrapper.template').remove();
     }
     //@todo fail: error message
   });   
@@ -60,7 +61,7 @@
     detail.find('img').attr({'src': info.url, 'alt': info.name});
     detail.find('.likes').text(info.likes + ' likes');
     detail.find('.comments').text(info.comments + ' comments');
-    detail.find('.date').text('Last visited on ' + months[date.getMonth()] + ' ' + date.getDate());    
+    detail.find('.date').text('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());    
 
     $('.image-slider').append(detail);
   }
@@ -74,7 +75,6 @@
       index: index,
     });
 
-    var details = $('.details .image-wrapper');
     var infowindow = new google.maps.InfoWindow({
       content: '<h4>' + marker.title + '</h4>' +
         '<img src="' + thumbs[marker.index] + '"/>',
@@ -82,9 +82,10 @@
     );
 
     marker.addListener('click', function() {
+      var details = $('.details .image-wrapper');      
       map.setCenter(marker.getPosition());
       infowindow.close();      
-      $(details[marker.index]).addClass('active');
+      $(details[marker.index]).addClass('active').siblings().removeClass('active');
       $('#map-canvas').animate({'height': 300});
       $('.image-slider').fadeIn('slow');
     });
