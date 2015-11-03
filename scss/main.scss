@@ -79,10 +79,16 @@ h1, h2 {
 	background-color: $dark;	
 	color: $light;
 	text-align: center;
+	padding: 1em;
+	p {
+		font-size: 1.2em;
+		font-weight: 100;
+	}
 }
 
 .details {
 	background-color: $dark;
+	display: none;
 	position: relative;
 	min-height: 500px;
 	@media all and (min-width: 500px){
@@ -97,12 +103,12 @@ h1, h2 {
 	.image-wrapper {
 		border: 1px solid $dark;
 		background-color: $light;
+		display: none;
 		padding: 2em;
 		margin: 0;
 		position: absolute;
 		top: 0;
 		left: 0;
-		display: none;
 	}
 }
 
@@ -120,7 +126,7 @@ h1, h2 {
 		right: .5em;
 	}
 	&.disabled {
-		color: lighten($dark, 10%);
+		opacity: .1;
 		cursor: default;
 	}
 }

@@ -88,7 +88,8 @@
       infowindow.close();      
       $(details[marker.index]).addClass('active').siblings().removeClass('active');
       $('#map-canvas').animate({'height': 300});
-      $('.image-slider').fadeIn('slow');
+      $('.intro').fadeOut('slow');
+      $('.details').fadeIn('slow');
     });
     marker.addListener('mouseover', function(){
       infowindow.setZIndex(1000);

@@ -418,10 +418,15 @@ h1, h2 {
 .intro {
   background-color: #000;
   color: #fff;
-  text-align: center; }
+  text-align: center;
+  padding: 1em; }
+  .intro p {
+    font-size: 1.2em;
+    font-weight: 100; }
 
 .details {
   background-color: #000;
+  display: none;
   position: relative;
   min-height: 500px; }
   @media all and (min-width: 500px) {
@@ -434,12 +439,12 @@ h1, h2 {
   .image-slider .image-wrapper {
     border: 1px solid #000;
     background-color: #fff;
+    display: none;
     padding: 2em;
     margin: 0;
     position: absolute;
     top: 0;
-    left: 0;
-    display: none; }
+    left: 0; }
 
 .image-slider-arrows {
   color: #fff;
@@ -453,7 +458,7 @@ h1, h2 {
   .image-slider-arrows.right {
     right: .5em; }
   .image-slider-arrows.disabled {
-    color: #1a1a1a;
+    opacity: .1;
     cursor: default; }
 
 .image-wrapper.active {
