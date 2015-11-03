@@ -60,6 +60,7 @@
     var date = new Date(parseInt(info.date) * 1000);
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var detail = $('.image-wrapper.template').clone().removeClass('template');
+    
     detail.find('h3').text(info.name);
     detail.find('img').attr({'src': info.url, 'alt': info.name});
     detail.find('.likes').append(info.likes + ' likes');
@@ -111,7 +112,7 @@
       zoom: 3,
       mapTypeControl: false,
     });
-    // map.addListener('bounds_changed', 'resize');
+    map.addListener('bounds_changed', 'resize');
   }
 
   $(document).ready(function(){
