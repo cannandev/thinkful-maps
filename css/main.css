@@ -375,8 +375,7 @@ img {
 
 h1, h2 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  color: #fff; }
+  font-weight: 300; }
 
 .container {
   max-width: 600px;
@@ -397,6 +396,7 @@ h1, h2 {
   width: 100%;
   z-index: 10; }
   .locations h1 {
+    color: #000;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: .25em;
@@ -475,6 +475,7 @@ h1, h2 {
 
 figcaption ul {
   list-style-type: none;
+  margin-bottom: 0;
   padding-left: 0; }
   figcaption ul .fa {
     padding: .5em 1em .5em 0; }
@@ -489,5 +490,6 @@ figcaption ul {
     vertical-align: top; }
     figcaption ul li.btn a {
       color: #fff;
-      text-decoration: none;
-      display: block; }
+      display: block;
+      font-weight: 100;
+      text-decoration: none; }
