@@ -60,9 +60,9 @@
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var detail = $('.image-wrapper.template').clone().removeClass('template');
     detail.find('img').attr({'src': info.url, 'alt': info.name});
-    detail.find('.likes').text(info.likes + ' likes');
-    detail.find('.comments').text(info.comments + ' comments');
-    detail.find('.date').text('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());    
+    detail.find('.likes').append(info.likes + ' likes');
+    detail.find('.comments').append(info.comments + ' comments');
+    detail.find('.date').append('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());    
 
     $('.image-slider').append(detail);
   }
@@ -111,15 +111,31 @@
   }
 
   $(document).ready(function(){
-  	initMap();
+    initMap();
   	$('#location-select').change(function(){
   		$('#map-canvas').animate({'height': 800});
   	});
-    $('.image-slider-arrows.right').click(function(){
-      $('.image-wrapper.active').removeClass('active').next().addClass('active');
+
+    $('.image-slider-arrows.right').click(function(e){
+      e.preventDefault();
+      if($('.image-wrapper.active').next().length === 0){
+        $(this).addClass('disabled');
+      }
+      else {
+        $(this).siblings().removeClass('disabled');
+        $('.image-wrapper.active').removeClass('active').next().addClass('active');
+      }
     });
-    $('.image-slider-arrows.left').click(function(){
-      $('.image-wrapper.active').removeClass('active').prev().addClass('active');
+
+    $('.image-slider-arrows.left').click(function(e){
+      e.preventDefault();
+      if($('.image-wrapper.active').prev().length === 0){
+        $(this).addClass('disabled');
+      }
+      else {
+        $(this).siblings().removeClass('disabled');
+        $('.image-wrapper.active').removeClass('active').prev().addClass('active');
+      }    
     });    
   });
 })();

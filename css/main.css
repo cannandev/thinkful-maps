@@ -422,7 +422,11 @@ h1, h2 {
 
 .details {
   background-color: #000;
-  position: relative; }
+  position: relative;
+  min-height: 500px; }
+  @media all and (min-width: 500px) {
+    .details {
+      min-height: 700px; } }
 
 /* End layout */
 .image-slider {
@@ -441,12 +445,24 @@ h1, h2 {
   color: #fff;
   font-size: 10em;
   position: absolute;
+  margin-top: -1em;
   top: 50%;
   z-index: 10; }
   .image-slider-arrows.left {
     left: .5em; }
   .image-slider-arrows.right {
     right: .5em; }
+  .image-slider-arrows.disabled {
+    color: #1a1a1a;
+    cursor: default; }
 
 .image-wrapper.active {
   display: block; }
+
+figcaption ul {
+  list-style-type: none;
+  padding-left: 0; }
+  figcaption ul .fa {
+    padding: .5em 1em .5em 0; }
+  figcaption ul li.date {
+    float: right; }

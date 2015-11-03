@@ -84,6 +84,10 @@ h1, h2 {
 .details {
 	background-color: $dark;
 	position: relative;
+	min-height: 500px;
+	@media all and (min-width: 500px){
+		min-height: 700px;		
+	}
 }
 
 /* End layout */
@@ -106,6 +110,7 @@ h1, h2 {
 	color: $light;
 	font-size: 10em;
 	position: absolute;
+	margin-top: -1em;
 	top: 50%;
 	z-index: 10;
 	&.left {
@@ -114,9 +119,25 @@ h1, h2 {
 	&.right {
 		right: .5em;
 	}
+	&.disabled {
+		color: lighten($dark, 10%);
+		cursor: default;
+	}
 }
 
 .image-wrapper.active {
 	display: block;
 }
 
+figcaption {
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+		.fa {
+			padding: .5em 1em .5em 0;
+		}
+		li.date {
+			float: right;
+		}
+	}
+}
