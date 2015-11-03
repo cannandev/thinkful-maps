@@ -22,6 +22,7 @@
           likes: d[i].likes.count,
           comments: d[i].comments.count,
           date: d[i].created_time,
+          link: d[i].link,
         };
 
         buildList(i, latLong);
@@ -59,10 +60,12 @@
     var date = new Date(parseInt(info.date) * 1000);
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var detail = $('.image-wrapper.template').clone().removeClass('template');
+    detail.find('h3').text(info.name);
     detail.find('img').attr({'src': info.url, 'alt': info.name});
     detail.find('.likes').append(info.likes + ' likes');
     detail.find('.comments').append(info.comments + ' comments');
-    detail.find('.date').append('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());    
+    detail.find('.date').append('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());
+    detail.find('.booking a').attr({'href': info.link, 'target': '_blank'});
 
     $('.image-slider').append(detail);
   }

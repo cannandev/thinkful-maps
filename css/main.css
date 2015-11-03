@@ -428,7 +428,8 @@ h1, h2 {
   background-color: #000;
   display: none;
   position: relative;
-  min-height: 500px; }
+  min-height: 500px;
+  padding: 3em 0; }
   @media all and (min-width: 500px) {
     .details {
       min-height: 700px; } }
@@ -445,14 +446,19 @@ h1, h2 {
     position: absolute;
     top: 0;
     left: 0; }
+  .image-slider .image-title {
+    margin-top: 0; }
 
 .image-slider-arrows {
   color: #fff;
-  font-size: 10em;
+  font-size: 8em;
   position: absolute;
-  margin-top: -1em;
+  margin-top: -.5em;
   top: 50%;
   z-index: 10; }
+  @media all and (min-width: 500px) {
+    .image-slider-arrows {
+      font-size: 10em; } }
   .image-slider-arrows.left {
     left: .5em; }
   .image-slider-arrows.right {
@@ -469,5 +475,16 @@ figcaption ul {
   padding-left: 0; }
   figcaption ul .fa {
     padding: .5em 1em .5em 0; }
-  figcaption ul li.date {
-    float: right; }
+  figcaption ul li.btn {
+    background: #56CFE8;
+    border-radius: 4px;
+    font-size: 1.3em;
+    padding: .5em 1em;
+    position: absolute;
+    bottom: 3em;
+    right: 1.5em;
+    vertical-align: top; }
+    figcaption ul li.btn a {
+      color: #fff;
+      text-decoration: none;
+      display: block; }

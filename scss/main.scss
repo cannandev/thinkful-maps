@@ -91,6 +91,7 @@ h1, h2 {
 	display: none;
 	position: relative;
 	min-height: 500px;
+	padding: 3em 0;
 	@media all and (min-width: 500px){
 		min-height: 700px;		
 	}
@@ -110,13 +111,19 @@ h1, h2 {
 		top: 0;
 		left: 0;
 	}
+	.image-title {
+		margin-top: 0;
+	}
 }
 
 .image-slider-arrows {
 	color: $light;
-	font-size: 10em;
+	font-size: 8em;	
+	@media all and ( min-width: 500px){
+		font-size: 10em;
+	}
 	position: absolute;
-	margin-top: -1em;
+	margin-top: -.5em;
 	top: 50%;
 	z-index: 10;
 	&.left {
@@ -142,8 +149,20 @@ figcaption {
 		.fa {
 			padding: .5em 1em .5em 0;
 		}
-		li.date {
-			float: right;
+		li.btn {
+			background: #56CFE8;
+			border-radius: 4px;
+			font-size: 1.3em;
+			padding: .5em 1em;
+			position: absolute;
+			bottom: 3em;
+			right: 1.5em;
+			vertical-align: top;
+			a {
+				color: $light;
+				text-decoration: none;
+				display: block;
+			}
 		}
 	}
 }
