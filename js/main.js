@@ -46,7 +46,6 @@
 
     $(list).on('change', location, centerLocation);
     /* See http://api.jquery.com/on/#passing-data */
-    
   }
 
   function centerLocation(event){
@@ -71,6 +70,18 @@
     $('.image-slider').append(detail);
   }
 
+  function openDetail(){
+    $('.intro').fadeOut('slow');
+    $('.details').fadeIn('slow');
+    $('#map-canvas').animate({'height': 750});    
+  }
+
+  function closeDetail(){
+    $('.intro').fadeIn('slow');
+    $('.details').fadeOut('slow');
+    $('#map-canvas').animate({'height': 500});
+  }  
+
   function addMarker(index, location){
     var marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
@@ -91,9 +102,7 @@
       map.setCenter(marker.getPosition());
       infowindow.close();      
       $(details[marker.index]).addClass('active').siblings().removeClass('active');
-      $('#map-canvas').animate({'height': 300});
-      $('.intro').fadeOut('slow');
-      $('.details').fadeIn('slow');
+      openDetail();
     });
     marker.addListener('mouseover', function(){
       infowindow.setZIndex(1000);
@@ -105,7 +114,7 @@
   }
 
   function initMap() {
-  	var start = {lat: 31.9639977, lng: 35.90654797};
+  	var start = {lat: 31.9639977, lng: 35.90654797}; // replace with latest location
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: start,
       scrollwheel: false,
@@ -116,7 +125,9 @@
 
   $(document).ready(function(){
     initMap();
-
+    $('#close-detail').click(function(){
+      closeDetail();
+    });
   });
 })();
 
