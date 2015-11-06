@@ -116,9 +116,6 @@
 
   $(document).ready(function(){
     initMap();
-  	$('#location-select').change(function(){
-  		$('#map-canvas').animate({'height': 800});
-  	});
 
   });
 })();
