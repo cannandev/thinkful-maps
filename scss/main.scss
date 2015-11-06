@@ -121,28 +121,6 @@ h1, h2 {
 	}
 }
 
-.image-slider-arrows {
-	color: $light;
-	font-size: 8em;	
-	@media all and ( min-width: 500px){
-		font-size: 10em;
-	}
-	position: absolute;
-	margin-top: -.5em;
-	top: 50%;
-	z-index: 10;
-	&.left {
-		left: .5em;
-	}
-	&.right {
-		right: .5em;
-	}
-	&.disabled {
-		opacity: .1;
-		cursor: default;
-	}
-}
-
 .image-wrapper.active {
 	display: block;
 }

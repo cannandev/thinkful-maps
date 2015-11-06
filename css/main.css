@@ -452,24 +452,6 @@ h1, h2 {
   .image-slider .image-title {
     margin-top: 0; }
 
-.image-slider-arrows {
-  color: #fff;
-  font-size: 8em;
-  position: absolute;
-  margin-top: -.5em;
-  top: 50%;
-  z-index: 10; }
-  @media all and (min-width: 500px) {
-    .image-slider-arrows {
-      font-size: 10em; } }
-  .image-slider-arrows.left {
-    left: .5em; }
-  .image-slider-arrows.right {
-    right: .5em; }
-  .image-slider-arrows.disabled {
-    opacity: .1;
-    cursor: default; }
-
 .image-wrapper.active {
   display: block; }
 
