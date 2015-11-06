@@ -112,7 +112,6 @@
       zoom: 3,
       mapTypeControl: false,
     });
-    map.addListener('bounds_changed', 'resize');
   }
 
   $(document).ready(function(){
@@ -120,7 +119,7 @@
   	$('#location-select').change(function(){
   		$('#map-canvas').animate({'height': 800});
   	});
-       
+
   });
 })();
 
