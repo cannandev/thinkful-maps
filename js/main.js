@@ -52,6 +52,8 @@
     var current = $('#location-select').find('option:selected').text();
     if(event.data.name === current){
       map.setCenter(event.data);
+console.log(this.selectedIndex);      
+      openDetail(this.selectedIndex-1);
     }
   }  
 
@@ -70,7 +72,9 @@
     $('.image-slider').append(detail);
   }
 
-  function openDetail(){
+  function openDetail(index){
+    var details = $('.details .image-wrapper');
+    $(details[index]).addClass('active').siblings().removeClass('active');
     $('.intro').fadeOut('slow');
     $('.details').fadeIn('slow');
     $('#map-canvas').animate({'height': 750});    
@@ -98,11 +102,9 @@
     );
 
     marker.addListener('click', function() {
-      var details = $('.details .image-wrapper');      
       map.setCenter(marker.getPosition());
       infowindow.close();      
-      $(details[marker.index]).addClass('active').siblings().removeClass('active');
-      openDetail();
+      openDetail(marker.index);
     });
     marker.addListener('mouseover', function(){
       infowindow.setZIndex(1000);
