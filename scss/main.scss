@@ -131,7 +131,7 @@ figcaption {
 		margin-bottom: 0;
 		padding-left: 0;
 		.fa {
-			padding: .5em 1em .5em 0;
+			padding: .4em 1em 0 0;
 		}
 		li.btn {
 			background: #56CFE8;
@@ -148,6 +148,10 @@ figcaption {
 				font-weight: 100;
 				text-decoration: none;
 			}
+		}
+		.social a {
+				color: #56CFE8;
+				text-decoration: none;
 		}
 	}
 }

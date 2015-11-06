@@ -460,7 +460,7 @@ figcaption ul {
   margin-bottom: 0;
   padding-left: 0; }
   figcaption ul .fa {
-    padding: .5em 1em .5em 0; }
+    padding: .4em 1em 0 0; }
   figcaption ul li.btn {
     background: #56CFE8;
     border-radius: 4px;
@@ -475,6 +475,9 @@ figcaption ul {
       display: block;
       font-weight: 100;
       text-decoration: none; }
+  figcaption ul .social a {
+    color: #56CFE8;
+    text-decoration: none; }
 
 .image-slider-close {
   text-align: right; }
