@@ -8,31 +8,33 @@
     dataType: "jsonp",
     cache: false,
     url: "https://api.instagram.com/v1/users/336431628/media/recent/?access_token=829290775.5f79be6.e09d3652a36f42cea5f8426426d844f8",
-    success: function(data) {
+    success: function(data) {     
       var d = data.data;
       for(var i=0; i<d.length; i++){
-        var latLong = {
-          lat: d[i].location.latitude, 
-          lng: d[i].location.longitude,
-          name: d[i].location.name,           
-        };
-        var imageInfo = {
-          url: d[i].images.standard_resolution.url, 
-          name: d[i].location.name, 
-          likes: d[i].likes.count,
-          comments: d[i].comments.count,
-          date: d[i].created_time,
-          link: d[i].link,
-        };
+        if (d[i].location) {
+          var latLong = {
+            lat: d[i].location.latitude, 
+            lng: d[i].location.longitude,
+            name: d[i].location.name,           
+          };
+          // var thumb;
+          var imageInfo = {
+            url: d[i].images.standard_resolution.url, 
+            name: d[i].location.name, 
+            likes: d[i].likes.count,
+            comments: d[i].comments.count,
+            date: d[i].created_time,
+            link: d[i].link,
+          };
 
-        buildList(i, latLong);
-        thumbs.push(d[i].images.thumbnail.url);        
-        addMarker(i, latLong);
-        addDetails(imageInfo);      
+          buildList(i, latLong);
+          thumbs.push(d[i].images.thumbnail.url);        
+          addMarker(latLong);
+          addDetails(imageInfo);
+        }
       }
       $('.image-wrapper.template').remove();
     }
-    //@todo fail: error message
   });   
 
   function buildList(index, location){
@@ -52,7 +54,6 @@
     var current = $('#location-select').find('option:selected').text();
     if(event.data.name === current){
       map.setCenter(event.data);
-console.log(this.selectedIndex);      
       openDetail(this.selectedIndex-1);
     }
   }  
@@ -86,13 +87,13 @@ console.log(this.selectedIndex);
     $('#map-canvas').animate({'height': 500});
   }  
 
-  function addMarker(index, location){
+  function addMarker(location){
     var marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       map: map,
       position: location,
       title: location.name,
-      index: index,
+      index: thumbs.length - 1,
     });
 
     var infowindow = new google.maps.InfoWindow({
@@ -116,7 +117,7 @@ console.log(this.selectedIndex);
   }
 
   function initMap() {
-  	var start = {lat: 31.9639977, lng: 35.90654797}; // replace with latest location
+  	var start = {lat: 31.9639977, lng: 35.90654797}; // @todo: latest location
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: start,
       scrollwheel: false,
