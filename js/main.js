@@ -66,7 +66,7 @@
     detail.find('.likes').append(info.likes + ' likes');
     detail.find('.comments').append(info.comments + ' comments');
     detail.find('.date').append('Last booked on ' + months[date.getMonth()] + ' ' + date.getDate());
-    detail.find('.social a').attr({'href': info.link, 'target': '_blank'});
+    detail.find('.booking a').attr({'href': info.link});
 
     $('.image-slider').append(detail);
   }
