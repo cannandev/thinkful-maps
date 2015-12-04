@@ -27,7 +27,7 @@
             link: d[i].link,
           };
 
-          buildList(i, latLong);
+          buildList(latLong);
           thumbs.push(d[i].images.thumbnail.url);        
           addMarker(latLong);
           addDetails(imageInfo);
@@ -37,13 +37,9 @@
     }
   });   
 
-  function buildList(index, location){
-    var list = document.getElementById('location-select');
-    var option = document.createElement('option');
-
-    option.text = location.name;
-    option.value = index;
-    list.appendChild(option);
+  function buildList(location){
+    var list = $('#location-select');
+    list.append('<option>' + location.name + '</option>');
     list.selectedIndex = 0;
 
     $(list).on('change', location, centerLocation);
