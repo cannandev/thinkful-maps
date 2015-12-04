@@ -17,7 +17,9 @@
             lng: d[i].location.longitude,
             name: d[i].location.name,           
           };
-          // var thumb;
+
+          var thumbUrl = d[i].images.thumbnail.url;
+
           var imageInfo = {
             url: d[i].images.standard_resolution.url, 
             name: d[i].location.name, 
@@ -28,7 +30,7 @@
           };
 
           buildList(latLong);
-          thumbs.push(d[i].images.thumbnail.url);        
+          thumbs.push(thumbUrl);        
           addMarker(latLong);
           addDetails(imageInfo);
         }
