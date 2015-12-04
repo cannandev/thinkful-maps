@@ -14,6 +14,7 @@ html {
 
 $dark: #000;
 $light: #fff;
+$brand: #56CFE8;
 
 /* End of colors */
 
@@ -88,6 +89,10 @@ h1, h2 {
 		font-size: 1.2em;
 		font-weight: 100;
 	}
+	a {
+		color: $brand;
+		text-decoration: none;
+	}
 }
 
 .details {
@@ -150,7 +155,7 @@ figcaption {
 			}
 		}
 		.social a {
-				color: #56CFE8;
+				color: $brand;
 				text-decoration: none;
 		}
 	}
